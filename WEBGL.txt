@@ -1,0 +1,62 @@
+https://fiberjungle.com/ (Business von Pascal. p.stoop@fiberjungle.com
+Gerne anschauen. Auch von wegen Arbeit. 10er pro Visualisierung. Sehr lukrativ)*
+
+
+WEBGL = Browsererweiterung (VR oder AI (augment intelligence) wird mehr und mehr im kommen sein
+-> obj / gltf sind typische Dateiformate für 3D Elemente
+-> Wie eine Location API (Wie das Prinzip einer Erweiterung vom Browser aus), KEINE LIBRARY. 
+-> *Interaktive 3D visualisierung dadurch möglich (z.B für Produktvisualisierungen auf dem WEB)
+-> WEBGL kann direkt auf die Grafikkarte zugreifen:
+CPU (Central Processing Unit) mit mehreren Kernen = der logische Teil, komplex aufgebaut, für Berechnungen etc 
+GPU (Graphic Processing Unit) für die einfachen Logiken auszuführen. Vorteil hier: Einfache Mechanismen, 1000Fach darstellen
+(Berechnet z.b die Maus, wie grafisch alles dargestellt wird. Aus 2 Millionen Pixel auf dem Bildschirm versucht der Computer, mit der GPU die Maus scharfstellen)
+->  Canvas 2D vs WEBGL = Hauptsächlich für 3D Mechanismen. 3D Visualierungen im WEB nun möglich
+(WEBGL Context beitzt somit X,Y,Z Achse. Paradebeispiel: Webpräsentation Suite 3D = wps3d auf Google (Weil viele nicht gewillt sind, eine App runterzuladen) =
+Augment Reality (Progressive Webapp) 
+
+
+WEBGL macht die Prozesse 60x pro Sekunde im Browser mit der Sprache: (Grafical Shader Language versteht die Grafikkarte, wird dich die GPU ausgeführt) 
+/ Javascript dann über die CPU
+
+Wireframes:
+-> Objekte sind aus lauter Dreiecken zusammengesetzt sind. Jedes 3D Objekt wird aus solchen Wires zusammengebaut.
+Dann wird eine Fläche berechnet im Zusammenspiel mit dem Licht. Shaders sorgen dann für die Materialbeschaffenheit.
+-> Games nutzen die selbige Technik.
+
+threejs.org:
+-> Ultimative Library für dreidimensional stuff. Vorteil: Man kann hier Szenen erbauen. Objektähnliche Sachen können interprätiert werden.
+WEBGL
+
+babylonjs.com:
+-> Weitere library für 3D Animation
+
+A-Frame Scenen kreieren auf aframe.io:
+-> Ein Plugin, was threejs integriert
+
+Formate für 3D:
+.OBJ, .FBX, .GLTF, .GLB
+
+threejs. editor:
+-> Objekte / 3D Modelle bauen und in den Code einfügen
+
+Materialien:
+-MeshStandardMaterial: Nicht Lichtbeschaffen (beeinflusst). Gut für Materialien, die eine simple Textur haben und "von sich selber her" scheinen.
+-MeshLambertMaterial: Material, welches vom Licht beinflusst wird. Licht gibt es hier, deshalb auch Parameter, wo viel berechnet wird. (Material wird der Umgebung passend eingesetzt).
+-PhysicalBasedMaterial: Aufgrund von komplexen Berechnungen wirg getestet, wie hell oder beschaffen das Material ist.
+
+Leere Canvasregion? Am besten 3D Modelle einbauen :D
+
+Editor (Autotextur reinladen):
+1) https://threejs.org/editor/ aufmachen
+2) JSON Autodatei reinladen
+3) Directionallight / Add > Directionallight > Material
+4) Color klicken > Weiss
+5) Map-Feld klicken und die JPEG mit der Textur öffnen
+6) Häkchen setzen
+
+Objekte für VSC aus dem Editor exportieren:
+1) Directionallight anwählen und DELETE drücken
+2) mat_car auswählen
+3) File > Export Object
+4) JSON file in das VSC reinladen
+	
