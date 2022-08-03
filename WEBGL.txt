@@ -44,7 +44,6 @@ Materialien:
 -MeshLambertMaterial: Material, welches vom Licht beinflusst wird. Licht gibt es hier, deshalb auch Parameter, wo viel berechnet wird. (Material wird der Umgebung passend eingesetzt).
 -PhysicalBasedMaterial: Aufgrund von komplexen Berechnungen wirg getestet, wie hell oder beschaffen das Material ist.
 
-Leere Canvasregion? Am besten 3D Modelle einbauen :D
 
 Editor (Autotextur reinladen):
 1) https://threejs.org/editor/ aufmachen
