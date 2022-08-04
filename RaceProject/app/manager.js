@@ -16,6 +16,12 @@ var RacingGame;
                         break;
                     case "ArrowUp":
                         break;
+                    case "ArrowLeft":
+                        break;
+                    case "ArrowRight":
+                        break;
+                    case "c":
+                        break;
                     case "":
                         break;
                 }
