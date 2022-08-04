@@ -24,18 +24,18 @@ namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "R
     }
 
     // Methode (Funktion in einer Klasse, Public = default, daher kann es getrost weggelassen werden)
-    setPlayerModel(pmodel: THREE.Object3D) {
+    public setPlayerModel(pmodel: THREE.Object3D) {
       this.refPlayerModel = pmodel;
-      this.refPlayerModel.position.x += 2;
+      // this.refPlayerModel.position.x += 2;
     }
 
-    public moveCarRight() {
-      this.refPlayerModel.position.x += 6;
-    }
-
-    public moveCarLeft() {
-      this.refPlayerModel.position.x -= 6;
-    }
+    // Position des Autos auf der X-Achse verschieben
+    public moveCarX(moveValue: number) {
+      if ((moveValue > 0 && this.refPlayerModel.position.x <= 0) ||
+          (moveValue < 0 && this.refPlayerModel.position.x >= 0)) {
+            this.refPlayerModel.position.x += moveValue;
+          }
+    } 
 
     // Kollision checken als checkCollisions()-Methode
     public checkCollisions() {

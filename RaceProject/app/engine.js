@@ -44,6 +44,16 @@ var RacingGame;
                 this.refManager.player.setPlayerModel(this.scene.getObjectByName("car"));
                 this.render(); // Was somit beduetet, dass loader geladen wurde, referenziert auf die Engine, so wird "render()" aufgerufen
             });
+            // Hintergrund (lokale Variable erzeugen)
+            let skyboxloader = new THREE.CubeTextureLoader();
+            this.scene.background = skyboxloader.load([
+                "media/skybox/night_px.jpg",
+                "media/skybox/night_nx.jpg",
+                "media/skybox/night_py.jpg",
+                "media/skybox/night_ny.jpg",
+                "media/skybox/night_pz.jpg",
+                "media/skybox/night_nz.jpg"
+            ]);
         }
         // 3D Szene:
         resizeEngine() {

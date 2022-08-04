@@ -17,13 +17,14 @@ var RacingGame;
         // Methode (Funktion in einer Klasse, Public = default, daher kann es getrost weggelassen werden)
         setPlayerModel(pmodel) {
             this.refPlayerModel = pmodel;
-            this.refPlayerModel.position.x += 2;
+            // this.refPlayerModel.position.x += 2;
         }
-        moveCarRight() {
-            this.refPlayerModel.position.x += 6;
-        }
-        moveCarLeft() {
-            this.refPlayerModel.position.x -= 6;
+        // Position des Autos auf der X-Achse verschieben
+        moveCarX(moveValue) {
+            if ((moveValue > 0 && this.refPlayerModel.position.x <= 0) ||
+                (moveValue < 0 && this.refPlayerModel.position.x >= 0)) {
+                this.refPlayerModel.position.x += moveValue;
+            }
         }
         // Kollision checken als checkCollisions()-Methode
         checkCollisions() {

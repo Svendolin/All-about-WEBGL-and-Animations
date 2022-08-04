@@ -27,6 +27,16 @@ var RacingGame;
                 switch (event.key) {
                     case "ArrowDown":
                         break;
+                    case "ArrowUp":
+                        break;
+                    case "ArrowLeft":
+                        this.player.moveCarX(-6);
+                        break;
+                    case "ArrowRight":
+                        this.player.moveCarX(6);
+                        break;
+                    case "C":
+                        break;
                     case "":
                         break;
                 }
