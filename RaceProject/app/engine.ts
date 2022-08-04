@@ -1,5 +1,12 @@
+/// <reference path="../typings/node_modules/@types/three/index.d.ts" />
+
+
+
+
+
 namespace RacingGame {
-  export class Engine { // Klassen immer Gross am Anfang
+  export class Engine { // (Klassen immer Gross am Anfang)
+    // INFO 1: Properties können wir mit Access Modifiers benennen (private oder public)
     private refManager: Manager;
     private scene: THREE.Scene;
     private camera: THREE.PerspectiveCamera;
@@ -12,6 +19,7 @@ namespace RacingGame {
 
     }
 
+    // INFO 2: Methoden können wir ebenfalls mit Access Modifiers benennen (private oder public)
     // Methode, um 3D Scene zu initialisieren (Funktionen in einer Klasse = Methoden)
     private init3DScene() {
       this.scene = new THREE.Scene();
@@ -45,6 +53,8 @@ namespace RacingGame {
       loader.load("media/models/models_combined.json", 
       // WHY Arrow Function aus ES6? => so können wir mit this. direkt auf "Engine" zugreifen, sobald eben loader geladen wurde
       (object: any) => {
+        this.scene.add(object); // Objekt der Szene hinzufügen
+        this.refManager.player.setPlayerModel(this.scene.getObjectByName("car"));
         this.render(); // Was somit beduetet, dass loader geladen wurde, referenziert auf die Engine, so wird "render()" aufgerufen
       });
     }
@@ -57,8 +67,12 @@ namespace RacingGame {
     }
 
     // Render-Methode:
-    render() {
+    render = () => {
+      // 1ste und schönste Variante:
+      window.requestAnimationFrame(this.render);
+      // 2te Variante: window.requestAnimationFrame(this.render.bind(this));
       this.renderer.render(this.scene, this.camera); // Wir sagen in Three.js immer, aus welcher Szene wir welche Kamera rendern wollen
+      // this.camera.position.x += 0.01; = Verschiebt konstant unsere kamera nach rechts
     }
   }
 }

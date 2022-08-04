@@ -1,8 +1,11 @@
+/// <reference path="../typings/node_modules/@types/three/index.d.ts" />
+
+
 namespace RacingGame {
   export class Manager { // Klassen immer Gross am Anfang
     // Properties darin mit access modifiers (private, public etc)
     private engine: Engine;
-    private player: Player;
+    public player: Player; // so können wir in engine.ts auf den Player zugreifen
     private level: Level;
     private utils: Utils;
 

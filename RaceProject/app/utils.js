@@ -1,3 +1,5 @@
+// Das Modul braucht den Pfad:
+/// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {
     class Utils {

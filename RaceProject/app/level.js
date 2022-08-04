@@ -1,3 +1,4 @@
+/// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {
     class Level {
