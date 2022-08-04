@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+threejs anschauen: MANUAL > Getting Started / Creating a Scene
+-->
+<html>
+  <head>
+      <title>Rendering a Car</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="core/lib/semantic-ui/semantic.min.css">
+
+      <style> 
+        .aspect-container {
+          position: relative;
+          padding: 0 0 50% 0;
+          height: 0;
+          overflow: hidden;
+        }
+        #webglOutput {
+          width: 100%; 
+          height: 100%; 
+          position:absolute;
+          top:0;
+          left:0;
+        }
+      </style>
+
+      <script src="core/lib/jquery-3.2.1.js"></script>
+      <script src="core/lib/semantic-ui/semantic.min.js"></script>
+      <script src="core/lib/three.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Textur anziegen lassen -->
+      <script src="core/lib/OrbitControls.js"></script> <!-- PlugIn aufschalten, um diesen Mauszeigerverschieber möglich zu machen -->
+
+      <script>
+        let refDiv = undefined;
+        let gl = null;
+        let scene, camera, renderer, orbitControl;  // Vier globale Variablen, die unten initialisiert werden. Anonsten wäre unten "let camera etc"
+        
+        /// --- Objekt holen: Demfall <div id="webglOutput"></div > --- ///
+        function init() {
+          refDiv = document.getElementById("webglOutput");
+          console.log(refDiv.clientWidth + ", " + refDiv.clientHeight);
+          
+          // --- Szene vorbereiten --- //
+          scene = new THREE.Scene();
+          // --- Camera vorbereiten --- //
+          camera = new THREE.PerspectiveCamera(45, // 45 = Winkel in Grad, refD
+                                                  refDiv.clientWidth / refDiv.clientHeight,
+                                                  0.1,
+                                                  1000);
+          renderer = new THREE.WebGLRenderer({antialias:true}); // {antialias = Gibt den Antialisizing effekt. Schöne saubere Linien, statt Pixeltreppen}
+          renderer.setClearColor(new THREE.Color(0xcccccc));  // Farbe als numerischer Wert (Hexadezimal) - Schwarzer Shader
+          renderer.setSize(refDiv.clientWidth, refDiv.clientHeight);
+
+          /// --- Schatten aktivieren --- ///
+          renderer.shadowMapEnabled = true;
+          renderer.shadowMapType = THREE.PCFSoftShadowMap;
+
+
+
+          // --- Orbitcontrol Tool sorgt dafür, dass der Nutzer mit Mausklick das Produkt anschauen kann) --- //
+          orbitControl = new THREE.OrbitControls (camera, renderer.domElement); // Initialisierung der Variable oben, camera und das Element selber einbeziehen, was laufend gerendert werden soll
+          
+          // https://threejs.org/docs/?q=OrbitControls#examples/en/controls/OrbitControls
+          // orbitControl.autoRotate = true;
+          // orbitControl.autoRotateSpeed = 5;
+
+
+          /// --- Cameraposition setzen --- ///
+          camera.position.set(-20, 40, 30); // Normalerweise startet die Kamera vom Mittelpunkt 0/0/0 - X/Y/Z  X = Rot // 0 ist Wagrecht rote Linie X im 90 Grad Winkel. Minus logischerweise negativ
+          camera.lookAt(scene.position);  // Somit schaut die Kamera auf den Weltmittelpunkt // Y = Grün
+
+
+
+        
+
+
+          /// --- 3D-Meshes kreieren (Aufbau kann auch auf threejs nachgeschaut werden) --- ///
+          //Plane:
+          let planeGeometry = new THREE.PlaneGeometry(60, 20);  // Plane = 3D Element ohne Tiefe, quasi eine Platte. Hier wird die Grösse definiert
+          let planeMaterial = new THREE.MeshLambertMaterial({color: 0x999999});  // Meshmaterial erzeugen mit Farbe
+          let plane = new THREE.Mesh(planeGeometry, planeMaterial);
+          scene.add(plane);
+          // Plane rotieren (in Radianten, nicht Grad)
+          plane.rotation.x = -0.5 * Math.PI; // Umrechnungmethode kommt zu Zug. Dieser Wert ist gegeben
+          plane.receiveShadow = true; // Receive hier, bei den anderen CASTshadow, weil:
+          // Receive = Befehl, Schatten aussenden und empfangen  / cast = Schatten werden nur empfangen
+
+          // //Box (Cube) - Der Ablauf ist immer gleich: 3 Variablen, Schritt für Schritt aufbauen
+          // let boxGeometry = new THREE.BoxGeometry(4, 4, 4);
+          // let boxMaterial = new THREE.MeshLambertMaterial({color: 0xff0000, wireframe: false});  // let sphereMaterial =new THREE.MeshBasic oder Lambert Material({color: 0x0000ff, wireframe: false oder true}); 
+          // let box = new THREE.Mesh(boxGeometry, boxMaterial);
+          // scene.add(box);
+          // box.position.x = -15;          // Mit .set können alle Werte gleichzeitig ändern: box.position.set()
+          // box.position.y = 4;
+          // box.castShadow = true;
+
+          // //(Sphere):
+          // let sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
+          // let sphereMaterial = new THREE.MeshLambertMaterial({color: 0x0000ff, wireframe: false});  // Meshmaterial erzeugen mit Farbe (Basic, Lambert, Physical. Beschrieb dazu im .txt)
+          // let sphere= new THREE.Mesh(sphereGeometry, sphereMaterial);
+          // scene.add(sphere);
+          // sphere.position.x = 10;          // Mit .set können alle Werte gleichzeitig ändern: box.position.set()
+          // sphere.position.y = 4;
+          // sphere.castShadow = true;
+
+          /// --- Automodell integrieren (Dafür habe ich rasch die Box und Sphere ausgeklammert) --- ///
+          let loader = new THREE.ObjectLoader();  // Objectloader ladet Objekte rein, wie der Name es schon sagt
+          loader.load("media/model.json",
+                  (obj) => {
+                    scene.add(obj);
+                    let mycar = scene.getObjectByName ("car");
+                    draw();
+                  });
+
+          /// --- Lichter der Szene hinzufügen, da MeshLabert das gerne hätte (Ansonsten wäre alles dunkel) --- ///
+          let spotLight = new THREE.SpotLight( 0xffffff, 1 );  // (Schatten Schwarz, 1 = Schattig, 2 z.B. = heller = Intensität quasi)
+          spotLight.position.set (-40,60,-10);
+          spotLight.castShadow = true; 
+          spotLight.shadowMapWidth = 2048;
+          spotLight.shadowMapHeight = 2048; // So werden die Schatten weicher und nicht so pixelig
+          spotLight.shadowDarkness = 0.25;
+
+
+          scene.add(spotLight);
+          // https://threejs.org/examples/#webgl_lights_spotlight
+          
+          /// --- Zusätzlich etwas Hemispherenlicht hinzufügen --- /// 
+          const light = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.5 );     // ff=rot , ff=grün, ff=blau
+          scene.add( light );
+
+
+
+          /// --- Axes-Helper X,Y,Z Achse visuell sehen --- ///
+          let axes = new THREE.AxisHelper(20);
+          scene.add(axes);
+
+          document.getElementById("webglOutput").appendChild(renderer.domElement);   // Canvaselement dem Render hinzufügen
+          
+          draw();
+        }
+
+          // --- Szene rendern bzw Kamerafahrt erzeugen --- //
+          function draw() {
+           // camera.position.x += 0.05;
+           //camera.lookAt(scene.position);
+           orbitControl.update()  // Mit Mauszeiger orientieren (Klick und loslassen) - Hier wird ständig upgedated, wenn der Mauszeiger das Objekt verschiebt
+           renderer.render(scene, camera);
+           window.requestAnimationFrame(draw);
+            
+
+        };
+        
+        $(function() {
+            init();
+        });
+      </script>
+  </head>
+  <body>
+    <div class="ui raised padded container segment">
+      <div class="ui segments">
+        <div class="ui segment">
+          <h3>WebGL - Ein Auto rendern in 3D</h3>
+        </div>
+        <div class="ui segment" >
+          <div class="aspect-container">
+            <div id="webglOutput"></div >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
