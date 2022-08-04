@@ -45,9 +45,9 @@ Materialien:
 -PhysicalBasedMaterial: Aufgrund von komplexen Berechnungen wirg getestet, wie hell oder beschaffen das Material ist.
 
 
-Editor (Autotextur reinladen):
+Editor (Autotextur reinladen PS: Selbiges VErfahren auch für das Raceproject):
 1) https://threejs.org/editor/ aufmachen
-2) JSON Autodatei reinladen
+2) JSON Autodatei reinladen (DRAG AND DROP oder "Import")
 3) Directionallight / Add > Directionallight > Material
 4) Color klicken > Weiss
 5) Map-Feld klicken und die JPEG mit der Textur öffnen

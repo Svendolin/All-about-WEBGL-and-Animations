@@ -1,10 +1,64 @@
 namespace RacingGame {
   export class Engine { // Klassen immer Gross am Anfang
-
     private refManager: Manager;
+    private scene: THREE.Scene;
+    private camera: THREE.PerspectiveCamera;
+    private renderer: THREE.WebGLRenderer;
+    
     constructor(pManager: Manager) {
       this.refManager = pManager;
+      // Methode aufrufen
+      this.init3DScene();
 
+    }
+
+    // Methode, um 3D Scene zu initialisieren (Funktionen in einer Klasse = Methoden)
+    private init3DScene() {
+      this.scene = new THREE.Scene();
+      // Neue Kamera erzeugen
+      this.camera = new THREE.PerspectiveCamera(70,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        2500);
+
+      //Kamera positionieren
+      this.camera.position.set(0,8,18);
+
+      // Kamera setzen (wo schaut sie hin?)
+      this.camera.lookAt(0,0,0);
+
+      // Kamera der Szene "beisetzen"
+      this.scene.add(this.camera);
+      
+      // Licht setzen:
+      let lightD = new THREE.DirectionalLight(0xffffff, 3);
+      lightD.position.set(0, 10, 5);
+      this.scene.add(lightD);
+
+      // WEBGL-Renderer, der die untenstehende Szene berechnet:
+      this.renderer = new THREE.WebGLRenderer({antialias: true});
+      this.resizeEngine();
+      document.body.appendChild(this.renderer.domElement);
+
+      // Lokale Variable:
+      let loader = new THREE.ObjectLoader();
+      loader.load("media/models/models_combined.json", 
+      // WHY Arrow Function aus ES6? => so können wir mit this. direkt auf "Engine" zugreifen, sobald eben loader geladen wurde
+      (object: any) => {
+        this.render(); // Was somit beduetet, dass loader geladen wurde, referenziert auf die Engine, so wird "render()" aufgerufen
+      });
+    }
+
+    // 3D Szene:
+    resizeEngine() {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // Render-Methode:
+    render() {
+      this.renderer.render(this.scene, this.camera); // Wir sagen in Three.js immer, aus welcher Szene wir welche Kamera rendern wollen
     }
   }
 }
