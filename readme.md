@@ -5,92 +5,87 @@
 
 # ✔- ALL ABOUT ANIMATIONS and WEBGL - ✔
 
-This "All-about-WEBGL-and-Animations"-repository catches up its focus on all the animations and WEBGL I did (and used) during my projects through the years as a **SAE-Web Development** student with exercise lessons every week as well as tutorial videos on _Youtube_.
-        
-Direct Link to the place where I'm studying are you going to find [HERE](https://www.sae.edu/che/de?utm_source=PS01&gclid=Cj0KCQjw-4SLBhCVARIsACrhWLVIaD_aUt7y4brT7tqMW9o7tskgb1vjQqJFkzQwkwdN_40_Ls7MgAEaAtXxEALw_wcB)
+<img align="center" alt="Canvas Picture" src="https://miro.medium.com/max/1084/1*tdI-dKyJX8FVsh8QiwZNVQ.png" /> <br>
 
+This "All-about-WEBGL-and-Animations"-repository catches up its focus on all the animations and WEBGL I did (and used) during my projects through the years as a **SAE-Web Development** student with exercise lessons every week as well as tutorial videos on _Youtube_.
+Direct Link to the place where I'm studying are you going to find here if you click this [LINK](https://www.sae.edu/che/de?utm_source=PS01&gclid=Cj0KCQjw-4SLBhCVARIsACrhWLVIaD_aUt7y4brT7tqMW9o7tskgb1vjQqJFkzQwkwdN_40_Ls7MgAEaAtXxEALw_wcB)
+
+{💒} => [HERE](https://threejs.org/examples/#webgl_animation_keyframes) are some crazy examples to demonstrate of what WEBGL ANIMATION with Three.js can actually do!
+<br />
+<br />
+
+
+***
+## Folder Directory✅
+***
+
+| Topic | Content  | 
+|:--------------| :--------------|
+| 01_GSAP_Animations |  01_CanvasBasic / 02_DrawingEditor  |
+| 02_GSAP_BannerAnimation |  Greensock GSAP Banner Animation with movements, sound and direct link to the JDM World |
+| 03_RaceProject |  A complex 3D Racing Game  |
+| 04_WebGL3DRendering | Tried to 3D-render a car which will be used in topic 03  |
+| InfoWEBGL |  Some German Textnotes  |
 
 ⚫🔴🟡 IMPORTANT: Comments in each file are commented in german⚫🔴🟡
 <br />
 <br />
 
-
 ***
-## Folder Directory
-***
-
-| Topic | Content  | 
-|:--------------| :--------------|
-| 01&nbsp;Week |  XML HTTP Request (_01 , 02_) // FETCH with: `.then` or `ASYNC` or `JQUERY` (_03 , 04 , 05_)  // API FETCH with: `ASYNC` or `JQUERY` (_06 , 07 , 08_)  |
-
-<br />
-<br />
-
-***
-## Technologies and Installation ✅
+## Technologies and Installation (Stored at core > lib-folder) ✅
 ***
 
-JQUERY - INSTALLATION:
+(TO SIMPLIFY) - JQUERY - INSTALLATION:
 * https://cdnjs.com/libraries/jquery (if you would like to use JQUERY in your project)
-* XAMPP or MAMP if you want to combine AJAX with PHP to work with apache servers
 <br />
 
-Node.js - INSTALLATION:
-* https://nodejs.org/en/ (Recommend LTS for an unbuggy / non-risky experience)
+(TO MAKE SOUND) - HOWLER.JS - INSTALLATION:
+* https://howlerjs.com/ (if you would like to use HOWLER.JS in your project)
+* Howler.js is the common JavaScript Audio library for the modern web, easy and reliable across all platforms
 <br />
 
+(TO DISPLAY 3D CONTENT) - THREE.JS - INSTALLATION:
+* https://threejs.org/docs/index.html#manual/en/introduction/Installation (if you install it via NPM, make sure you've installed the Node Package Manager first)
+* Three.js is a cross-browser JavaScript (FRAMEWORK) and application programming interface (API) that uses WebGL to create and display animated 3D computer graphics in a web browser. The source code is hosted in a repository on GitHub and has an own website.
+* Three. js allows the creation of graphical processing unit (GPU)-accelerated 3D animations using the JavaScript language as part of a website without relying on proprietary browser plugins. This is possible due to the advent of WebGL, a graphics API created specifically for the web (GPU = Graphic Processing Unit, used for simple logic processes such as rendering the mouse cursor / CPU = Central Processing Unit, used for complex calculations).
+* Three.js is the world's most popular JavaScript framework for displaying 3D content on the web
+* NOTE: Three.js has also an EDITOR to pre-build 3D models and generate code out of it
+* SIDE NOTE: Another JS LIBRARY which uses WEBGL to create and display animated 3D computer graphics in a web browser is BABYLON.JS
+<br />
+
+(TO ANIMATE) - GSAP - INSTALLATION:
+* https://greensock.com/docs/v3/Installation (if you would like to use GSAP in your project)
+* GSAP is a robust JavaScript toolset that turns developers into animation superheroes. Build high-performance animations that work in every major browser
+* You can eiter download it from the website, use a CDN, NPM, clone the repository from Github or CodePen
 
 <br />
 <br />
 
 ***
-<img align="left" alt="JavaScript" width="35px" src="https://raw.githubusercontent.com/github/explore/8be26d91eb231fec0b8856359979ac09f27173fd/topics/ajax/ajax.png" /> 
 
-## &nbsp;AJAX - Useful Assistance ✅
-***
-``AJAX`` = Asynchronous* Javascript and XML 
-
-_**Means:**_
-
-* Asynchronous Request (Fetch = Vanilla, JQuery Ajax = JQuery, etc) and Responses.
-XML = Obsolete, actually works like HTML. Through Json (text version of JS)
-
-
-
-```js
-/* ---- BASIC EXAMPLE ---- */
-
-
-```
-<br>
-
-_**How does it look like to ASYNC a function, FETCH an API and read the content with JSON() IN YOUR WEBSITE ?**_
-
-```js
-
-```
-
-<br />
-<br />
-
-
-
-
-***
-<img align="left" alt="JavaScript" width="35px" src="https://raw.githubusercontent.com/github/explore/d92924b1d925bb134e308bd29c9de6c302ed3beb/topics/terminal/terminal.png" />
-
-## &nbsp;TERMINAL COMMANDS I USED HERE ✅
+## &nbsp;HTML / WEBGL / GSAP - Useful Assistance ✅
 ***
 
-| COMMAND | EFFECT  | 
-|:--------------| :--------------|
-| $ node --version | Checks the node.js version (None if you havent installed it) |
+_**WEBGL (Web Graphics Library):**_
 
+* (FIRST make sure your browser is supporting WEBGL. You can test it [HERE](https://get.webgl.org/))
+-  is a JavaScript API for rendering high-performance interactive 3D and 2D graphics within any compatible web browser without the use of plug-ins. WebGL does so by introducing an API that closely conforms to OpenGL ES 2.0 that can be used in HTML ``<canvas>`` elements. This conformance makes it possible for the API to take advantage of hardware graphics acceleration provided by the user's device. The ``<canvas>`` element is also used by the Canvas API to do 2D graphics on web pages
+- is very inteliigent as an API, because this is an extension from the browser and not an external library
+- is specified in 3D dimensional space and thus has X, Y, Z axis
 
+_**Usual 3D dataformats:**_
 
+- .OBJ 
+- .FBX
+- .GLTF
+- .GLB
+
+_**GSAP:**_
+
+* is a super robust Javascript toolset to create amazing SVG animations, can be used in three.js powered WEBGL projects to animate any object in a scene (with pixi.js for example) or control performant canvas animations (with ease.js for example)
+* works with tweens and timelines. Get more infos [HERE](https://greensock.com/docs/v3/GSAP) 
 <br />
 <br />
-
 
 ***
 ## Collaboration ✅
@@ -109,5 +104,6 @@ _**How does it look like to ASYNC a function, FETCH an API and read the content 
 | Questions | Anwers | Changes |
 |:--------------|:-------------:|--------------:|
 | 0 | 0 | 0 |
+
 
 
