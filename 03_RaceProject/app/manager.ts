@@ -1,3 +1,5 @@
+/* manager.ts = Um das Spiel zu managen */
+
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 
 
@@ -12,23 +14,30 @@ namespace RacingGame {
     private _gameState: number;
 
     constructor() {
+      this.gameState = GameState.Init; // enum Wert von unten zuweisen. Was das ist, wird unten erklärt (-1)
       this.engine = new Engine(this);
       this.player = new Player(this);
       this.level = new Level(this);
       this.utils = new Utils(this);
       this.initListeners();
+     
       console.log("Manager initialized");
     }
 
-    // get Methode:
-    get gameState(): number {
+    // get + set Variable, um CODE auszuführen:
+    // Als "number" definiert, deshalb funktioniert 0,1,2 etc für dessen Status
+    // Weil das doof ist, definieren wir alles mit Text als enum Wert
+    get gameState(): number { 
       return this._gameState
-    }
+    } // 0 = Zustand 0
     set gameState(pnewState: number) {
-      if (pnewState === 0) {
+      if (pnewState === GameState.Start) { // enum Wert 0
+
+      } // 1 = Zustand 1
+      else if (pnewState === GameState.Running) { // enum Wert 1
 
       }
-      else if (pnewState === 1) {
+      else if (pnewState === GameState.Finished) { // enum Wert 2
 
       }
       this._gameState = pnewState;
@@ -63,5 +72,14 @@ namespace RacingGame {
       });
       
     }
+  }
+
+  // enum definieren (Text einer Nummer zuordnen, nummerischer Wert)
+  // Mit "export" machen wir es mehreren Files zugängig
+  export enum GameState {
+    Init = -1,
+    Start = 0,
+    Running = 1,
+    Finished = 2
   }
 }

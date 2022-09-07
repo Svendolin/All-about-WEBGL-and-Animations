@@ -1,12 +1,15 @@
+/* engine.ts = Um das Spiel zu rendern */
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {
     class Engine {
         constructor(pManager) {
-            // Render-Methode:
+            // Render-Methode (Bild jederzeit rendern)
             this.render = () => {
                 // 1ste und schönste Variante:
                 window.requestAnimationFrame(this.render);
+                // Die Fortbewegung nach Z (vorne / hinten) rendern.
+                this.refManager.player.moveCarZ();
                 // 2te Variante: window.requestAnimationFrame(this.render.bind(this));
                 this.renderer.render(this.scene, this.camera); // Wir sagen in Three.js immer, aus welcher Szene wir welche Kamera rendern wollen
                 // this.camera.position.x += 0.01; = Verschiebt konstant unsere kamera nach rechts
@@ -42,7 +45,9 @@ var RacingGame;
             (object) => {
                 this.scene.add(object); // Objekt der Szene hinzufügen
                 this.refManager.player.setPlayerModel(this.scene.getObjectByName("car"));
+                this.refManager.gameState = RacingGame.GameState.Start; // enum aus manager.ts der Szene beifügen
                 this.render(); // Was somit beduetet, dass loader geladen wurde, referenziert auf die Engine, so wird "render()" aufgerufen
+                console.log(this.refManager.gameState);
             });
             // Hintergrund (lokale Variable erzeugen)
             let skyboxloader = new THREE.CubeTextureLoader();

@@ -1,3 +1,5 @@
+/* player.ts = Spieleraktionen zu definieren */
+
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 
 namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "RacingGame" heissen und keine Konflikte auslösen (z.B gleichgenannte Klassen über mehrere Files hinweg)
@@ -29,12 +31,18 @@ namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "R
       // this.refPlayerModel.position.x += 2;
     }
 
-    // Position des Autos auf der X-Achse verschieben
+    // Position des Autos auf der X-Achse verschieben (LI RE)
     public moveCarX(moveValue: number) {
       if ((moveValue > 0 && this.refPlayerModel.position.x <= 0) ||
           (moveValue < 0 && this.refPlayerModel.position.x >= 0)) {
             this.refPlayerModel.position.x += moveValue;
           }
+    } 
+
+    // Position des Autos auf der Z-Achse verschieben (VO Rü)
+    public moveCarZ() {
+      this.refPlayerModel.position.z -= 0.1; // Pro Aufruf der Methode 0.01 nach vorne schieben
+          
     } 
 
     // Kollision checken als checkCollisions()-Methode

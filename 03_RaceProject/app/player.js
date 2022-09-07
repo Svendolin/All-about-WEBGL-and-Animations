@@ -1,3 +1,4 @@
+/* player.ts = Spieleraktionen zu definieren */
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {
@@ -19,12 +20,16 @@ var RacingGame;
             this.refPlayerModel = pmodel;
             // this.refPlayerModel.position.x += 2;
         }
-        // Position des Autos auf der X-Achse verschieben
+        // Position des Autos auf der X-Achse verschieben (LI RE)
         moveCarX(moveValue) {
             if ((moveValue > 0 && this.refPlayerModel.position.x <= 0) ||
                 (moveValue < 0 && this.refPlayerModel.position.x >= 0)) {
                 this.refPlayerModel.position.x += moveValue;
             }
+        }
+        // Position des Autos auf der Z-Achse verschieben (VO Rü)
+        moveCarZ() {
+            this.refPlayerModel.position.z -= 0.1; // Pro Aufruf der Methode 0.01 nach vorne schieben
         }
         // Kollision checken als checkCollisions()-Methode
         checkCollisions() {
