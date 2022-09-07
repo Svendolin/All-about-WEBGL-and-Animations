@@ -32,6 +32,27 @@ Direct Link to the place where I'm studying are you going to find here if you cl
 <br />
 
 ***
+<img align="left" alt="JavaScript" width="35px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" />
+
+## &nbsp;- We used TYPESCRIPT: What is important? ✅
+***
+
+WHAT IS TYPESCRIPT?
+* TypeScript is a free and open source programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language. It is designed for the development of large applications and transpiles to JavaScript.
+<br />
+
+WHY DID I USE TYPESCRIPT?
+* TypeScript (TS for short) is a superset of JavaScript. That means TS is also an implementation of ECMAScript, but extends JavaScript with additional "features". This allows variables and methods to be typed, whereupon certain errors can also be detected here already at translation time. Any JavaScript code will work in TypeScript, but not all TypeScript code will work in JavaScript. Thats why we need to COMPILE IT:
+<br />
+
+HOW CAN WE COMPILE?
+* Each time before we start workin on the project: ``ctrl + shift + b`` > "watch tsc" in your coding editor such as VSC
+
+
+<br />
+<br />
+
+***
 ## Technologies and Installation (Stored at core > lib-folder) ✅
 ***
 
@@ -63,7 +84,7 @@ Direct Link to the place where I'm studying are you going to find here if you cl
 
 ***
 
-## &nbsp;HTML / WEBGL / GSAP - Useful Assistance ✅
+## &nbsp;WEBGL / GSAP - Useful Assistance ✅
 ***
 
 _**WEBGL (Web Graphics Library):**_
