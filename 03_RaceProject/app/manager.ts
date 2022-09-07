@@ -1,6 +1,8 @@
 /* manager.ts = Um das Spiel zu managen */
 
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
+/// <reference path="../typings/node_modules/@types/jquery/index.d.ts" />
+
 
 
 namespace RacingGame {
@@ -29,18 +31,24 @@ namespace RacingGame {
     // Weil das doof ist, definieren wir alles mit Text als enum Wert
     get gameState(): number { 
       return this._gameState
-    } // 0 = Zustand 0
+    } 
     set gameState(pnewState: number) {
       if (pnewState === GameState.Start) { // enum Wert 0
+        this.player.reset();
+        $(".menuInfo").show();
+        $(".rankingInfo").hide();
 
-      } // 1 = Zustand 1
+      } 
       else if (pnewState === GameState.Running) { // enum Wert 1
-
+        $(".menuInfo").hide();
+        $(".rankingInfo").hide();
       }
       else if (pnewState === GameState.Finished) { // enum Wert 2
-
+        $(".menuInfo").hide();
+        $(".rankingInfo").show();
       }
       this._gameState = pnewState;
+      console.log(this._gameState);
     }
 
 
@@ -63,10 +71,15 @@ namespace RacingGame {
             this.player.moveCarX(6);
             break;
 
-          case "C":
-                    break;
+          case "r":
+            this.gameState = GameState.Start;
+            break;
 
-          case "":
+          case "C":
+            break;
+
+          case " ":
+            this.gameState = GameState.Running;
             break;
         }
       });

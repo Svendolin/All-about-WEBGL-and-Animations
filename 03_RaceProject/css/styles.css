@@ -7,3 +7,31 @@ html, body {
 #scoreData, #speedData {
     display: inline;
 }
+
+.tachoElement.scoreArea {
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
+.tachoElement.speedArea {
+    background-color: blue;
+    position: absolute;
+}
+
+.menuInfo.infoscreen {
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    left: 42%;
+}
+
+.rankingInfo.infoscreen {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    left: 42%;
+}

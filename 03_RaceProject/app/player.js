@@ -14,6 +14,10 @@ var RacingGame;
         reset() {
             this.score = 0;
             this.speed = 0;
+            if (this.refPlayerModel !== undefined) {
+                this.refPlayerModel.position.z = 0;
+                this.refPlayerModel.position.x = 0;
+            }
         }
         // Methode (Funktion in einer Klasse, Public = default, daher kann es getrost weggelassen werden)
         setPlayerModel(pmodel) {
@@ -29,7 +33,14 @@ var RacingGame;
         }
         // Position des Autos auf der Z-Achse verschieben (VO Rü)
         moveCarZ() {
-            this.refPlayerModel.position.z -= 0.1; // Pro Aufruf der Methode 0.01 nach vorne schieben
+            if (this.refManager.gameState === RacingGame.GameState.Running) {
+                if (this.refPlayerModel.position.z > -1110) {
+                    this.refPlayerModel.position.z -= 2; // Pro Aufruf der Methode 0.01 nach vorne schieben
+                }
+                else {
+                    this.refManager.gameState = RacingGame.GameState.Finished;
+                }
+            }
         }
         // Kollision checken als checkCollisions()-Methode
         checkCollisions() {
