@@ -29,7 +29,7 @@ var RacingGame;
             // Kamera setzen (wo schaut sie hin?)
             this.camera.lookAt(0, 0, 0);
             // Kamera der Szene "beisetzen"
-            this.scene.add(this.camera);
+            // this.scene.add(this.camera);
             // Licht setzen:
             let lightD = new THREE.DirectionalLight(0xffffff, 3);
             lightD.position.set(0, 10, 5);
@@ -38,13 +38,23 @@ var RacingGame;
             this.renderer = new THREE.WebGLRenderer({ antialias: true });
             this.resizeEngine();
             document.body.appendChild(this.renderer.domElement);
-            // Lokale Variable:
+            // Lokale Variable (Mit LOADER laden wir alle Objekte)
             let loader = new THREE.ObjectLoader();
             loader.load("media/models/models_combined.json", 
             // WHY Arrow Function aus ES6? => so können wir mit this. direkt auf "Engine" zugreifen, sobald eben loader geladen wurde
             (object) => {
                 this.scene.add(object); // Objekt der Szene hinzufügen
-                this.refManager.player.setPlayerModel(this.scene.getObjectByName("car"));
+                // Referenz vom Auto als zwischenvariable speichern, um...
+                let refCar = this.scene.getObjectByName("car");
+                this.refManager.player.setPlayerModel(refCar);
+                // ...Kamera dem Auto hinzufügen:
+                refCar.add(this.camera);
+                //set material properties
+                let mainMaterial1 = this.scene.getObjectByName("Path").material; // (path = Strasse)
+                // Mapping der Achse Ränderns (T und S)
+                mainMaterial1.map.wrapS = THREE.RepeatWrapping;
+                mainMaterial1.map.wrapT = THREE.RepeatWrapping;
+                mainMaterial1.map.repeat.set(1, 1); // Grössen sollen sich dadurch nicht verändern
                 this.refManager.gameState = RacingGame.GameState.Start; // enum aus manager.ts der Szene beifügen
                 this.render(); // Was somit beduetet, dass loader geladen wurde, referenziert auf die Engine, so wird "render()" aufgerufen
                 console.log(this.refManager.gameState);
