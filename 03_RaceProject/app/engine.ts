@@ -9,7 +9,7 @@ namespace RacingGame {
   export class Engine { // (Klassen immer Gross am Anfang)
     // INFO 1: Properties können wir mit Access Modifiers benennen (private oder public)
     private refManager: Manager;
-    private scene: THREE.Scene;
+    public scene: THREE.Scene;
     private camera: THREE.PerspectiveCamera;
     private renderer: THREE.WebGLRenderer;
     
@@ -62,6 +62,11 @@ namespace RacingGame {
         this.refManager.player.setPlayerModel(refCar);
         // ...Kamera dem Auto hinzufügen:
         refCar.add(this.camera);
+
+        // Barriers und Dollarmodelle erzeugen
+        this.refManager.level.refDollarModel = this.scene.getObjectByName("Collectible");
+        this.refManager.level.refBarrierModel = this.scene.getObjectByName("Barrier");
+        this.refManager.level.createLevel(); // Methode Create Level aufrufen
 
         //set material properties
         let mainMaterial1 = (<any>this.scene.getObjectByName("Path")).material; // (path = Strasse)

@@ -8,9 +8,9 @@
 namespace RacingGame {
   export class Manager { // Klassen immer Gross am Anfang
     // Properties darin mit access modifiers (private, public etc)
-    private engine: Engine;
+    public engine: Engine;
     public player: Player; // so können wir in engine.ts auf den Player zugreifen
-    private level: Level;
+    public level: Level;
     private utils: Utils;
 
     private _gameState: number;
@@ -58,9 +58,11 @@ namespace RacingGame {
         console.log(event);
         switch (event.key) {
           case "ArrowDown":
+            this.player.speed -= 0.25; // Rückwärts
             break;
 
           case "ArrowUp":
+              this.player.speed += 0.25; // Vorwärts
               break;
 
           case "ArrowLeft":

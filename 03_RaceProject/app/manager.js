@@ -41,8 +41,10 @@ var RacingGame;
                 console.log(event);
                 switch (event.key) {
                     case "ArrowDown":
+                        this.player.speed -= 0.25; // Rückwärts
                         break;
                     case "ArrowUp":
+                        this.player.speed += 0.25; // Vorwärts
                         break;
                     case "ArrowLeft":
                         this.player.moveCarX(-6);

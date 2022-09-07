@@ -35,11 +35,12 @@ var RacingGame;
         moveCarZ() {
             if (this.refManager.gameState === RacingGame.GameState.Running) {
                 if (this.refPlayerModel.position.z > -1110) {
-                    this.refPlayerModel.position.z -= 2; // Pro Aufruf der Methode 0.01 nach vorne schieben
+                    this.refPlayerModel.position.z -= this.speed; // Pro Aufruf der Methode 0.01 nach vorne schieben
                 }
                 else {
                     this.refManager.gameState = RacingGame.GameState.Finished;
                 }
+                document.querySelector("#speedData").innerHTML = "" + this.speed; // ERROR?
             }
         }
         // Kollision checken als checkCollisions()-Methode

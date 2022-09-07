@@ -49,6 +49,10 @@ var RacingGame;
                 this.refManager.player.setPlayerModel(refCar);
                 // ...Kamera dem Auto hinzufügen:
                 refCar.add(this.camera);
+                // Barriers und Dollarmodelle erzeugen
+                this.refManager.level.refDollarModel = this.scene.getObjectByName("Collectible");
+                this.refManager.level.refBarrierModel = this.scene.getObjectByName("Barrier");
+                this.refManager.level.createLevel(); // Methode Create Level aufrufen
                 //set material properties
                 let mainMaterial1 = this.scene.getObjectByName("Path").material; // (path = Strasse)
                 // Mapping der Achse Ränderns (T und S)
