@@ -1,5 +1,6 @@
 /* player.ts = Spieleraktionen zu definieren */
 
+// Für Typescript Mapping:
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 
 namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "RacingGame" heissen und keine Konflikte auslösen (z.B gleichgenannte Klassen über mehrere Files hinweg)
@@ -54,11 +55,21 @@ namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "R
           this.refManager.gameState = GameState.Finished;
         }
         document.querySelector("#speedData").innerHTML = ""+this.speed; // ERROR?
+
+        // Innerhalb moveCarZ aufrufen:
+        this.checkCollisions();
       }
     }
 
     // Kollision checken als checkCollisions()-Methode
     public checkCollisions() {
+      for(let i = 0; i < this.refManager.level.dataMap.length; i++) {
+        let tempLevelObj = this.refManager.level.dataMap[i];
+
+        // tempLevelObj.position.x / .y / .z
+        // this.refPlayerModel.position.x / .y / z
+        // tempLevelObj.visible = false;
+      }
 
     }
   }

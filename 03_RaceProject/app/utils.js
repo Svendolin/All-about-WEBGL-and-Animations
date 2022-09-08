@@ -1,4 +1,5 @@
 // Das Modul braucht den Pfad:
+// Für Typescript Mapping:
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {

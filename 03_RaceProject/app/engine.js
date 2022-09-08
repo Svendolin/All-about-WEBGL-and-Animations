@@ -1,4 +1,5 @@
 /* engine.ts = Um das Spiel zu rendern */
+// Für Typescript Mapping:
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {

@@ -1,4 +1,5 @@
 /* player.ts = Spieleraktionen zu definieren */
+// Für Typescript Mapping:
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 var RacingGame;
 (function (RacingGame) {
@@ -41,10 +42,18 @@ var RacingGame;
                     this.refManager.gameState = RacingGame.GameState.Finished;
                 }
                 document.querySelector("#speedData").innerHTML = "" + this.speed; // ERROR?
+                // Innerhalb moveCarZ aufrufen:
+                this.checkCollisions();
             }
         }
         // Kollision checken als checkCollisions()-Methode
         checkCollisions() {
+            for (let i = 0; i < this.refManager.level.dataMap.length; i++) {
+                let tempLevelObj = this.refManager.level.dataMap[i];
+                // tempLevelObj.position.x / .y / .z
+                // this.refPlayerModel.position.x / .y / z
+                // tempLevelObj.visible = false;
+            }
         }
     }
     RacingGame.Player = Player;

@@ -1,9 +1,7 @@
 /* engine.ts = Um das Spiel zu rendern */
+
+// Für Typescript Mapping:
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
-
-
-
-
 
 namespace RacingGame {
   export class Engine { // (Klassen immer Gross am Anfang)

@@ -1,5 +1,6 @@
 /* manager.ts = Um das Spiel zu managen */
 
+// Für Typescript Mapping:
 /// <reference path="../typings/node_modules/@types/three/index.d.ts" />
 /// <reference path="../typings/node_modules/@types/jquery/index.d.ts" />
 
@@ -77,7 +78,11 @@ namespace RacingGame {
             this.gameState = GameState.Start;
             break;
 
-          case "C":
+          case "c":
+            // Damit sollte C nur funktionieren, wenn das Auto am Start steht ===. Sonst kann C nicht mehr gedrückt werden
+            if (this.gameState === GameState.Start) {
+            this.level.createLevel();
+            }
             break;
 
           case " ":

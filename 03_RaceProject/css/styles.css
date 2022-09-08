@@ -1,39 +1,83 @@
-html, body {
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#scoreData,
+#speedData {
+  display: inline;
+}
+
+.infoscreen {
+  position: absolute;
+  top: auto;
+  bottom: 30px;
+  min-width: 50%;
+  left: 25%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: arial;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: solid 5px #ffffff;
+}
+.tachoElement {
+  position: absolute;
+  top: 2%;
+  min-width: 15%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  text-align: center;
+  font-size: 3rem;
+  font-family: arial;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: solid 5px #ffffff;
+}
+
+.scoreArea {
+  left: 20%;
+  right: auto;
+}
+
+.speedArea {
+  right: 20%;
+  left: auto;
+}
+
+.rankingTable {
+  position: absolute;
+  top: 20%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+
+.rankingInfo {
+  display: none;
+}
+
+.infoscreen table {
+  min-width: 50%;
+  margin: 0 auto;
+}
+
+.infoscreen table tr td.leftdata {
+  width: 50%;
+}
+
+.infoscreen table tr td.rightdata {
+  text-align: left;
+}
+
+@media only screen and (max-width: 750px) {
+  .infoscreen {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-}
-
-#scoreData, #speedData {
-    display: inline;
-}
-
-.tachoElement.scoreArea {
-    background-color: red;
-    position: absolute;
-    top: 0;
-    left: 60%;
-}
-
-.tachoElement.speedArea {
-    background-color: blue;
-    position: absolute;
-    left: 40%;
-    top: 0;
-}
-
-.menuInfo.infoscreen {
-    background-color: green;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 30px;
-    left: 42%;
-}
-
-.rankingInfo.infoscreen {
-    background-color: white;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 30px;
-    left: 42%;
+    width: 90%;
+    left: 5%;
+  }
 }

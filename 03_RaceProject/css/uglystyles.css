@@ -1,0 +1,39 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#scoreData, #speedData {
+    display: inline;
+}
+
+.tachoElement.scoreArea {
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 60%;
+}
+
+.tachoElement.speedArea {
+    background-color: blue;
+    position: absolute;
+    left: 40%;
+    top: 0;
+}
+
+.menuInfo.infoscreen {
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    left: 42%;
+}
+
+.rankingInfo.infoscreen {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    left: 42%;
+}
