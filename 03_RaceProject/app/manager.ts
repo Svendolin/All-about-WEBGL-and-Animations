@@ -23,23 +23,24 @@ namespace RacingGame {
       this.level = new Level(this);
       this.utils = new Utils(this);
       this.initListeners();
-     
+
       console.log("Manager initialized");
     }
 
     // get + set Variable, um CODE auszuführen:
     // Als "number" definiert, deshalb funktioniert 0,1,2 etc für dessen Status
     // Weil das doof ist, definieren wir alles mit Text als enum Wert
-    get gameState(): number { 
+    get gameState(): number {
       return this._gameState
-    } 
+    }
     set gameState(pnewState: number) {
       if (pnewState === GameState.Start) { // enum Wert 0
         this.player.reset();
+        this.level.createLevel();
         $(".menuInfo").show();
         $(".rankingInfo").hide();
 
-      } 
+      }
       else if (pnewState === GameState.Running) { // enum Wert 1
         $(".menuInfo").hide();
         $(".rankingInfo").hide();
@@ -59,12 +60,16 @@ namespace RacingGame {
         console.log(event);
         switch (event.key) {
           case "ArrowDown":
-            this.player.speed -= 0.25; // Rückwärts
+            if (this.gameState === GameState.Running) {
+              this.player.speedChanges = -2; // Rückwärts pro Klick langsamer
+            }
             break;
 
           case "ArrowUp":
-              this.player.speed += 0.25; // Vorwärts
-              break;
+            if (this.gameState === GameState.Running) {
+              this.player.speedChanges = 1; // Vorwärts pro Klick schneller
+            }
+            break;
 
           case "ArrowLeft":
             this.player.moveCarX(-6);
@@ -81,7 +86,7 @@ namespace RacingGame {
           case "c":
             // Damit sollte C nur funktionieren, wenn das Auto am Start steht ===. Sonst kann C nicht mehr gedrückt werden
             if (this.gameState === GameState.Start) {
-            this.level.createLevel();
+              this.level.createLevel();
             }
             break;
 
@@ -90,7 +95,17 @@ namespace RacingGame {
             break;
         }
       });
-      
+
+      window.addEventListener("keyup", event => {
+        if (this.gameState === GameState.Running) {
+          switch (event.key) {
+            case "ArrowUp":
+            case "ArrowDown":
+              this.player.speedChanges = -0.1;
+              break;
+          }
+        }
+      })
     }
   }
 

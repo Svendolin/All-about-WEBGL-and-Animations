@@ -10,7 +10,8 @@ namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "R
     private refManager: Manager; // ref-benannt (Pascal Special), weil dieser auf pManager referenziert ist
     private score: number;  // Standard sind alle Properties "public". Somit wäre diese Property auch ausserhalb der Klasse Player nutzbar
     // Im Gegensatz zu private bzw protected, was primär verhindert, das wir AUS VERSEHEN etwas verändert
-    public speed: number;
+    private speed: number; // Tempo bestimmen
+    public speedChanges: number; // Zu wechselndes Tempo bestimmen
     private refPlayerModel: THREE.Object3D; // Default Objekt der externen library aus Three.js bereits importiert in typings > node_modules
 
     // Konstruktor beschreibt den Wert, ohne die Ursprungsdefinition zu ändern. Zeile 4 könnten wir bereits "private score: number = 0" definieren.
@@ -24,6 +25,7 @@ namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "R
     public reset() { // Mit "this" auf das entsprechende Objekt zurückgreifen
       this.score = 0;
       this.speed = 0;
+      this.speedChanges = 0;
       if (this.refPlayerModel !== undefined) {
         this.refPlayerModel.position.z = 0;
         this.refPlayerModel.position.x = 0;
@@ -48,27 +50,49 @@ namespace RacingGame { // Mit Namespace kapseln. So wird die Überdatei immer "R
     // Position des Autos auf der Z-Achse verschieben (VO Rü)
     public moveCarZ() {
       if (this.refManager.gameState === GameState.Running) {
+        if (this.speedChanges !== 0) {
+          this.speed += this.speedChanges;
+
+          if (this.speed < 0) {
+            this.speed = 0;
+            this.speedChanges = 0;
+          }
+        }
         if (this.refPlayerModel.position.z > -1110) {
-          this.refPlayerModel.position.z -= this.speed; // Pro Aufruf der Methode 0.01 nach vorne schieben
+          this.refPlayerModel.position.z -= (this.speed * 0.01); // Pro Aufruf der Methode 0.01 nach vorne schieben
         }
         else {
           this.refManager.gameState = GameState.Finished;
         }
-        document.querySelector("#speedData").innerHTML = ""+this.speed; // ERROR?
-
+        this.updateSpeedScore();
         // Innerhalb moveCarZ aufrufen:
-        this.checkCollisions();
+        this.checkCollisions();  
       }
+    }
+
+    public updateSpeedScore() {
+        document.querySelector("#speedData").innerHTML = "" + this.speed.toFixed(1);
+        document.querySelector("#scoreData").innerHTML = "" + this.score.toFixed(1);
     }
 
     // Kollision checken als checkCollisions()-Methode
     public checkCollisions() {
-      for(let i = 0; i < this.refManager.level.dataMap.length; i++) {
+      for (let i = 0; i < this.refManager.level.dataMap.length; i++) {
         let tempLevelObj = this.refManager.level.dataMap[i];
 
-        // tempLevelObj.position.x / .y / .z
-        // this.refPlayerModel.position.x / .y / z
-        // tempLevelObj.visible = false;
+        if (tempLevelObj.visible &&
+          tempLevelObj.position.x === this.refPlayerModel.position.x &&
+          tempLevelObj.position.z > this.refPlayerModel.position.z &&
+          tempLevelObj.position.z < this.refPlayerModel.position.z + 10) {
+          tempLevelObj.visible = false;
+          if (tempLevelObj.name === "Barrier") {
+            this.speed /= 2; // Bei einem Crash mit der Barrier soll die Geschwindigkeit /2 gedrosselt werden
+
+          }
+          else {
+            this.score += this.speed;
+          }
+        }
       }
 
     }

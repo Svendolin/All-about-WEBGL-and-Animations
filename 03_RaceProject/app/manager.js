@@ -23,6 +23,7 @@ var RacingGame;
         set gameState(pnewState) {
             if (pnewState === GameState.Start) { // enum Wert 0
                 this.player.reset();
+                this.level.createLevel();
                 $(".menuInfo").show();
                 $(".rankingInfo").hide();
             }
@@ -42,10 +43,14 @@ var RacingGame;
                 console.log(event);
                 switch (event.key) {
                     case "ArrowDown":
-                        this.player.speed -= 0.25; // Rückwärts
+                        if (this.gameState === GameState.Running) {
+                            this.player.speedChanges = -2; // Rückwärts pro Klick langsamer
+                        }
                         break;
                     case "ArrowUp":
-                        this.player.speed += 0.25; // Vorwärts
+                        if (this.gameState === GameState.Running) {
+                            this.player.speedChanges = 1; // Vorwärts pro Klick schneller
+                        }
                         break;
                     case "ArrowLeft":
                         this.player.moveCarX(-6);
@@ -65,6 +70,16 @@ var RacingGame;
                     case " ":
                         this.gameState = GameState.Running;
                         break;
+                }
+            });
+            window.addEventListener("keyup", event => {
+                if (this.gameState === GameState.Running) {
+                    switch (event.key) {
+                        case "ArrowUp":
+                        case "ArrowDown":
+                            this.player.speedChanges = -0.1;
+                            break;
+                    }
                 }
             });
         }
