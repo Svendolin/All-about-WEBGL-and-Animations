@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+     <script src="code.js" defer></script>
+    <title>Speedy Ball Keyframe</title>
+
+    <style> 
+      .speedyball {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          position: relative;
+          background-color: black;
+          animation: mymove 6s infinite;
+          animation-name: speedyball;
+          animation-timing-function: ease-in-out;
+        }
+        
+        /* Animationsarbeit mit Keyframes vom Speedyball */
+        @keyframes speedyball {
+          0%   {background-color: black; left: -300px;}
+          50%  {background-color: white; left: 2400px;}
+          100% {background-color: black; left:-300px;}
+        }
+
+        .speedything {
+          width: 100px;
+          height: 100px;
+          margin: 0 auto;
+          border-radius: 50%;
+          position: relative;
+          background-color: red;
+          animation: mymove 4s infinite;
+          animation-name: speedything;
+          animation-timing-function: ease-in-out;
+        }
+        
+
+        /* Animationsarbeit mit Keyframes vom Speedything */
+        @keyframes speedything {
+          0%   {background-color: red; top: -300px;}
+          50%  {background-color: white; top: 1400px;}
+          100% {background-color: red; top:-300px;}
+        }
+    </style>
+</head>
+<body>
+  <div class="speedyball"></div>
+  <div class="speedything"></div>
+    
+</body>
+</html>
