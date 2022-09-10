@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From vs To vs FromTo and Timelines</title>
+    <style>
+        .b1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .b2 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+
+        .b3 {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+
+        .circle {
+            background: tomato;
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="box b1"></div>
+
+    <div class="box b2"></div>
+
+    <div class="box b3"></div>
+
+    <div class="circle"></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+    <script>
+
+        /* Jedes Objekt bekommt als gsap seine eigene Timeline*/
+        /// --- gsap.to für .box.b1 --- ///
+        gsap.to('.box.b1', {
+            x: '200px',
+            y: '3rem',
+            duration: 3
+        }) 
+        
+        /* ('Selection (Was wir animieren wollen)', {'Zu animierendes Obkjekt'}, 'Dauer als Zahl in Sekunden') */
+
+        /// --- gsap.from für .box.b2 --- ///
+        gsap.from('.box.b2', {
+            x: '6rem',
+            y: '6rem',
+            duration: 5
+        })
+
+        /// --- gsap.from für .box.b2 --- ///
+        gsap.fromTo('.box.b3', {
+            x: '16rem',
+            y: '2rem',
+        }, {
+            x: '9rem',
+            y: '10rem',
+            duration: 5
+        })
+
+        /* Circle bekommt als myTimeline seine eigene Timeline*/
+        /// --- gsap.from für .box.b2 --- ///
+        const myTimeline = gsap.timeline({repeat: -1, yoyo: true})  /* Innerhalb () sorgt für ENDLOSSCHLAUFE */
+
+        myTimeline
+            .to('.circle', {
+                x: '200px' ,
+                y: 0,
+                duration: 2
+            })
+            .to(['.circle', 'red'], {
+                x: '200px' ,
+                y: '200px',
+                duration: 2    
+            })
+            .to('.circle', {
+                x: 0 ,
+                y: '200px',
+                duration: 2    
+            })
+            .to('.circle', {
+                x: 0,
+                y: 0,
+                duration: 2    
+            })
+
+    </script>
+</body>
+</html>
+<!-- 
+    - CSS Animations haben kein Event (Ausser Hover)
+    - Greensock setzt JS als Basis voraus
+    - Greensock als defer oben oder ohne unten im Body
+    1) CDN verlinken im Body als erstes Script Stück <script> (Andere Script z.b für JS dann erst nachher)
+    2) Tween = Animation Punkt 1 zu Punkt 2 > Tween klicken > Version anschauen, hier demfall 3.0   
+    3) gsap.to('element', {x} = Transform, Translate) 
+    4) Timeline = Eine Verkettung von Tweens
+    
+-->
