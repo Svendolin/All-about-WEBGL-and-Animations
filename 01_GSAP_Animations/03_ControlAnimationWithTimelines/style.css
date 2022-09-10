@@ -1,0 +1,74 @@
+/* === Small CSS Reset === */
+*{
+  margin: 0;
+  padding: 0;
+}
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #222;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  background-color: blue;
+  color: white;
+  border: solid 2px white;
+  margin: 2rem;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: rgb(0, 0, 107);
+  cursor: pointer;
+}
+
+main {
+  overflow: hidden;
+  width: 100%;
+  border: solid 2px blue;
+  height: 85vh;
+}
+
+.circle, .square {
+  width: 120px;
+  height: 120px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.red {
+  background: rgb(255, 77, 77);
+  border: solid 2px red;
+}
+
+.orange {
+  background: rgb(253, 194, 83);
+  border: solid 2px orange;
+}
+
+.green {
+  background: rgb(77, 255, 77);
+  border: solid 2px green;
+}
+
+.blue {
+  background: rgb(85, 85, 255);
+  border: solid 2px blue;
+}
+
+.pink {
+  background: rgb(255, 94, 121);
+  border: solid 2px pink;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Animation with Timelines and Buttons</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><button id="play">play</button></li>
+      <li><button id="pause">pause</button></li>
+      <li><button id="reverse">reverse</button></li>
+      <li><button id="accelerate">accelerate</button></li>
+      <li><button id="slow">slow down</button></li>
+      <li><button id="seek">go to (2s)</button></li>
+      <li><button id="progress">got to (50%)</button></li>
+      <li><button id="restart">restart</button></li>
+    </ul>
+  </nav>
+  <main>
+    <div class="circle red"></div>
+    <div class="circle orange"></div>
+    <div class="circle green"></div>
+    <div class="square blue"></div>
+    <div class="square pink"></div>
+  </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+    <script src="animation.js"></script>
+</body>
+</html>
+<!-- 
+    - CSS Animations haben kein Event (Ausser Hover)
+    - Greensock setzt JS als Basis voraus
+    - Greensock als defer oben oder ohne unten im Body
+    1) CDN verlinken im Body als erstes Script Stück <script> (Andere Script z.b für JS dann erst nachher)
+    2) Tween = Animation Punkt 1 zu Punkt 2 > Tween klicken > Version anschauen, hier demfall 3.0   
+    3) gsap.to('element', {x} = Transform, Translate) 
+    4) Timeline = Eine Verkettung von Tweens
+    
+-->
