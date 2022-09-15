@@ -21,7 +21,7 @@ Direct Link to the place where I'm studying are you going to find here if you cl
 
 | Topic | Content  | 
 |:--------------| :--------------|
-| 01_GSAP_Animations |  01_CanvasBasic / 02_DrawingEditor  |
+| 01_GSAP_Animations |  00_FromToMeetsTimelines / 01_KeyframeAnimation / 03_ControlAnimationWithTimelines / 04_PulsingStraggerAnimation / 05_OnthelineStaggerAnimation / 06_SAEBannerAnimation / 07_NavFooterSidebarAnimation / 08_ScrollmagicWithParallax / 09_ScrollmagicGeneralTemplate |
 | 02_GSAP_BannerAnimation |  Greensock GSAP Banner Animation with movements, sound and direct link to the JDM World |
 | 03_RaceProject |  A complex 3D Racing Game  |
 | 04_WebGL3DRendering | Tried to 3D-render a car which will be used in topic 03  |
@@ -84,7 +84,7 @@ HOW CAN WE COMPILE?
 
 ***
 
-## &nbsp;WEBGL / GSAP - Useful Assistance ✅
+## &nbsp;WEBGL / GSAP / SCROLLMAGIC - Useful Assistance ✅
 ***
 
 _**WEBGL (Web Graphics Library):**_
@@ -105,6 +105,11 @@ _**GSAP:**_
 
 * is a super robust Javascript toolset to create amazing SVG animations, can be used in three.js powered WEBGL projects to animate any object in a scene (with pixi.js for example) or control performant canvas animations (with ease.js for example)
 * works with tweens and timelines. Get more infos [HERE](https://greensock.com/docs/v3/GSAP) 
+
+_**Scrollmagic:**_
+
+* is a Javascript library for magical scroll interactions. ScrollMagic helps you to easily react to the user's current scroll position.
+* Official Website over [HERE](https://scrollmagic.io/) 
 <br />
 <br />
 
