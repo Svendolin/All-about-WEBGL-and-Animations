@@ -1,0 +1,44 @@
+/* === Small CSS Reset === */
+*{
+  margin: 0;
+  padding: 0;
+}
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+
+}
+
+.slide .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
+}
+
+.parallax {
+  background: url('img.jpg') 50% 0;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+}
+
+.slide h1 {
+  text-shadow: #000 2px 2px 2px;
+}
+
+.slideIn {
+  background: blue;
+}
+
+.slideIn2 {
+  background: #c21b6f;
+}
+
+.slideIn2 .row{
+  justify-content: space-around;
+}

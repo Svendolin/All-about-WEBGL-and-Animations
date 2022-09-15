@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=    , initial-scale=1.0">
+  <title>GSAP YT-Example</title>
+  <!-- Falls man das CSS auf einem separaten CSS File angehen möchte -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Greensock tag MIT defer, wenn er im HEAD positioniert sein soll. Ansonsten direkt vor dem /body TAG Ende -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" defer></script>
+  <!-- Greensock PLUGINS, text-Plugin sowie Motionpath für später (Beide nicht in diesem Tutorial nötig) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.1/TextPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/MotionPathPlugin.min.js"></script>
+  <!-- Link zum Javascript-File -->
+  <script src="animation.js" defer></script> <!-- defer nutzen, damit die animation NACH dem Lesen vom HTML lädt -->
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;     /* Um die Scrollbar an den Seiten zu vermeiden = Die Elemente werden somit nicht mehr über die Kante geschoben */
+    }
+
+    .header {
+      height: 15vh;
+      background-color: red;
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 30px;
+    }
+
+    .content {
+      flex-grow: 1;   /* Sorgt für ein Wachstum des mittleren Breichs */
+      display: flex;
+      justify-content: space-between; /* Damit die Sidebars nmach aussen gepusht werden und der Button in der Mitte ist */
+    
+    }
+
+    .sidebar {
+      background-color: green;
+      width: 15vw;
+    }
+
+    .button {
+      align-self: center;  /* Durch seine eigene Breite stretchen */
+      width: 200px;
+      height: 50px;
+      font-size: 20px;
+    }
+
+    .footer {
+      transform: translateY(100%);  /* Da wir in der animation gsap.to gewählt haben, müssen wir diesen Anfangswert HIER definieren: Unterhalb der Bodyheight (Unsichtbar) */
+      height: 15vh;
+      background-color: blue;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="links">
+      <div class="link">Link 1</div>
+      <div class="link">Link 2</div>
+      <div class="link">Link 3</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sidebar left"></div>
+    <button class="button">Reverse!</button>
+    <div class="sidebar right"></div>
+  </div>
+  <div class="footer"></div>
+</body>
+</html>
